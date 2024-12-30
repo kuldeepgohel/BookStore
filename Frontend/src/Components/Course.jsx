@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import list from "../../public/list.json";
 import Card from "./Card";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 const Course = () => {
+const [book,setBook] =useState([]);
+useEffect(()=>
+{
+  const getBook = async()=>{
+   try {
+    const response = await axios.get("http://localhost:4000/book");
+
+    setBook(response.data);
+   } catch (error) {
+      console.log(error);
+   }
+  }
+  getBook();
+},[])
 
   return (
     <>
@@ -20,7 +35,7 @@ const Course = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 mt-12">
             {
-                list.map((item)=>{
+                book.map((item)=>{
                     return <Card item={item} key={item.id}/>
                 })
             }
