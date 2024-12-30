@@ -4,7 +4,7 @@ import Login from "./Login";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-
+const SIGNUP_URL = import.meta.env.SIGNUP_URL;
 const Signup = () => {
   const {
     register,
@@ -18,9 +18,9 @@ const Signup = () => {
       password: data.password,
     };
     await axios
-      .post("http://localhost:4000/user/signup", userInfo)
+      .post(`${SIGNUP_URL}`, userInfo)
       .then((res) => {
-        toast.success('Signup Successfully');
+        toast.success("Signup Successfully");
         localStorage.setItem("user", JSON.stringify(res.data.user));
       })
       .catch((err) => {
@@ -34,7 +34,6 @@ const Signup = () => {
         <div className="flex justify-center items-center h-screen ">
           <div className="modal-box border">
             <form onSubmit={handleSubmit(onSubmit)}>
-              {/* if there is a button in form, it will close the modal */}
               <Link
                 to="/"
                 className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+const LOGIN_URL = import.meta.env.VITE_LOGIN_URL;
 const Login = () => {
   const {
     register,
@@ -15,7 +16,7 @@ const Login = () => {
       password: data.password,
     };
     await axios
-      .post("http://localhost:4000/user/login", userInfo)
+      .post(`${LOGIN_URL}`, userInfo)
       .then((res) => {
         toast.success('Login Successfully');
         localStorage.setItem("user", JSON.stringify(res.data.user));

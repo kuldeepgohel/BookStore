@@ -5,13 +5,15 @@ import Card from "./Card";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+const BOOK_URL = import.meta.env.VITE_BOOK_URL;
+
 const Course = () => {
 const [book,setBook] =useState([]);
 useEffect(()=>
 {
   const getBook = async()=>{
    try {
-    const response = await axios.get("http://localhost:4000/book");
+    const response = await axios.get(`${BOOK_URL}`);
 
     setBook(response.data);
    } catch (error) {

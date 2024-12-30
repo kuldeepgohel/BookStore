@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes book-turn {
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  .animate-book-turn {
+    animation: book-turn 2s infinite;
+    transform-style: preserve-3d;
+    transform-origin: left;
+  }
+  

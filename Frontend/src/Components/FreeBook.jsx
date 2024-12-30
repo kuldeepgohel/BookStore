@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import Card from "./Card";
 import axios from "axios";
-
+const BOOK_URL = import.meta.env.VITE_BOOK_URL;
 const FreeBook = () => {
   const [book, setBook] = useState([]);
   useEffect(() => {
     const getBook = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/book");
+        const response = await axios.get(`${BOOK_URL}`);
         setBook(response.data.filter((item) => item.category === "Free"));
       } catch (error) {
         console.log(error);
@@ -20,8 +20,8 @@ const FreeBook = () => {
     getBook();
   }, []);
 
-
   var settings = {
+    lazyLoad: "ondemand",
     dots: true,
     infinite: false,
     speed: 500,
