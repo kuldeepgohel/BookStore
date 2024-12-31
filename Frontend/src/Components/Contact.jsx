@@ -1,16 +1,29 @@
 import React from "react";
 import Navbar from "./Navbar";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-const ACCESS_KEY =import.meta.env.VITE_ACCESS_KEY;
+import emailjs from "@emailjs/browser";
 import { toast } from "react-hot-toast";
-
+const serviceID = import.meta.env.VITE_SERVICE_ID;
+const templateID = import.meta.env.VITE_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_PUBLIC_KEY;
 
 const Contact = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const onSubmit = (data) => {
-    
+     const serv_Id = `${serviceID}` ; 
+     const tem_ID = `${templateID}`; 
+     const pK = `${publicKey}`; 
+
+    emailjs
+      .send(serv_Id, tem_ID, data, pK)
+      .then(() => {
+        toast.success("Email sent successfully!");
+        reset(); 
+      })
+      .catch((error) => {
+        toast.error("Failed to send email. Please try again.");
+      });
   };
 
   return (

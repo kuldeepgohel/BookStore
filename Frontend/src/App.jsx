@@ -6,21 +6,22 @@ import Signup from "./Components/Signup";
 import Contact from "./Components/Contact";
 import { Toaster } from "react-hot-toast";
 import Loading from "./Components/Loading"; // Loading spinner component
+import About from "./Components/About";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating loading with setTimeout
+    
     setTimeout(() => {
-      setIsLoading(false); // Set loading to false after 3 seconds
+      setIsLoading(false); 
     }, 3000);
   }, []);
 
   return (
     <div>
       {isLoading ? (
-        <Loading /> // Show loading spinner until content is loaded
+        <Loading /> 
       ) : (
         <>
           <Routes>
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/course" element={<Course />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
           </Routes>
           <Toaster />
         </>

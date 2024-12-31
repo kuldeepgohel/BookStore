@@ -18,8 +18,7 @@ const Login = () => {
     await axios
       .post(`${LOGIN_URL}`, userInfo)
       .then((res) => {
-        toast.success('Login Successfully');
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        toast.success("Login Successfully");
       })
       .catch((err) => {
         toast.error(err.response.data.message);
